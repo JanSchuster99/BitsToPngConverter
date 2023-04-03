@@ -8,11 +8,13 @@ import time
 # Es öffnet sich ein kleines Fenster mit einem Button "Generate Image"
 # Nach Druck auf den Button öffnet sich der Explorer 
 # Wähle eine TXT DATEI welche NUR EINSEN UND NULLEN beinhaltet (KEINE LEERZEICHEN ODER UMBRÜCHE) oder einfach eine bin/Binary file(fck team GMTROM)
-# Wenn alles gucci läuft wird ein PNG mit dem aktuellen Timestamp als namen erzeugt
+# Wenn alles gucci läuft wird ein PNG mit dem aktuellen Timestamp als namen erzeugt wo jeder schwarze Pixel eine 1 Darstellt und jeder weiße Pixel eine 0
 # Die Größe des Bilds wird definiert durch die Anzahl der Chars im txt file. Es nimmt die sqrt der nächst größten Quadratzahl als länge und Breite
 # Bsp: file hat 5 chars => nächste größte Quadratzahl = 9 => 3x3 pixel (bitte nutzt das programm nicht nur mit ner sample size von 5 bits)
+# Die "Fehlenden" 4 Pixel werden mit weißen Pixel aufgefüllt d.h. eine lange Reihe an weißen Pixeln am ende ist nicht schuld eurer Bit folge sondern einfach da 
+# um das Quadrat zu füllen
 # Beispiel einer Text Datei und dem dazugehörigen Bild hier mit im Repo
-# Wenn nicht = der Fehler sitzt vor dem PC
+# Wenn es nicht Funkioniert => der Fehler sitzt vor dem PC
 # Hab überlegt drag and drop zu supporten, fuck that shit tho
 # Programm wurde 100% von mir geschrieben und komplett ohne hilfe von CHAT GPT ;) shit ist auch überhaupt nicht optimized oder gut geschrieben aber reicht lmao
 # Falls es irgendwelche Probleme gibt. fragt CHAT GPT oder schreibts einfach selbst um. CHAT GPT ist noch kostenlos o<()8°)
@@ -39,14 +41,24 @@ def generate_image():
         # Calculate the dimensions of the image based on the square root of the number of bits
         dim = int(math.ceil(math.sqrt(len(bits))))
 
-        # Create a dim x dim image with white background
-        img = Image.new('1', (dim, dim), color=1)
+        # Create a dim x dim image with black background
+        img = Image.new('1', (dim, dim), color=0)
 
         # Iterate over the list of bits and set the corresponding pixel in the image
         for i, bit in enumerate(bits):
             row = i // dim
             col = i % dim
-            img.putpixel((col, row), bit)
+            if bit == 0:
+                img.putpixel((col, row), 255)
+            else:
+                img.putpixel((col, row), 0)
+        else:
+            # Set the remaining pixels to gray
+            for row in range(row+1, dim):
+                for col in range(dim):
+                    img.putpixel((col, row), 128)
+            for col in range(col+1, dim):
+                img.putpixel((col, row), 128)
 
         # Get the path to the output file based on current time
         timestamp = time.strftime("%Y%m%d-%H%M%S")
