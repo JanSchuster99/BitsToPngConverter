@@ -1,0 +1,4 @@
+Das Programm braucht Pillow für die Bilder und tkinter für das coole interface
+
+pip install pillow
+pip install tkinter
