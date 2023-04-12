@@ -7,7 +7,7 @@ from tkinter import messagebox
 import time
 # Es öffnet sich ein kleines Fenster mit einem Button "Generate Image"
 # Nach Druck auf den Button öffnet sich der Explorer 
-# Wähle eine TXT DATEI welche NUR EINSEN UND NULLEN beinhaltet (KEINE LEERZEICHEN ODER UMBRÜCHE) oder einfach eine bin/Binary file(fck team GMTROM)
+# Wähle eine TXT DATEI welche NUR EINSEN UND NULLEN beinhaltet (KEINE LEERZEICHEN ODER UMBRÜCHE) oder einfach eine bin/Binary file(team GMTROM <3)
 # Wenn alles gucci läuft wird ein PNG mit dem aktuellen Timestamp als namen erzeugt wo jeder schwarze Pixel eine 1 Darstellt und jeder weiße Pixel eine 0
 # Die Größe des Bilds wird definiert durch die Anzahl der Chars im txt file. Es nimmt die sqrt der nächst größten Quadratzahl als länge und Breite
 # Bsp: file hat 5 chars => nächste größte Quadratzahl = 9 => 3x3 pixel (bitte nutzt das programm nicht nur mit ner sample size von 5 bits)

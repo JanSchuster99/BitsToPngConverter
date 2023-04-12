@@ -66,4 +66,4 @@ um das Quadratische PNG zu bilden werden die "fehlenden" Bits mit weißen Pixel 
 
 
 
-fck team GMTROM
+ GMTROM kinda cute ngl 😳
